@@ -19,7 +19,7 @@ services:
     website:
         container_name: aciff-website
         build:
-            target: php-clean-installation
+            target: local
             context: .
             dockerfile: ./.docker/php/Dockerfile
         ports:

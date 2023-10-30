@@ -1,6 +1,6 @@
 .PHONY: run
 run:
-	@docker compose up -d --remove-orphans
+	@docker compose up --build -d --remove-orphans
 
 .PHONY: stop
 stop:
