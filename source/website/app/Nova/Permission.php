@@ -2,21 +2,26 @@
 
 namespace App\Nova;
 
-use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\BelongsToMany;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class User extends Resource
+class Permission extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\User>
+     * @var class-string<\App\Models\Permission>
      */
-    public static $model = \App\Models\User::class;
+    public static $model = \App\Models\Permission::class;
+
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Security';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -31,29 +36,8 @@ class User extends Resource
      * @var array
      */
     public static $search = [
-        'name', 'email',
+        'name',
     ];
-
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        if ($request->user()->hasRole('super-admin')) {
-            return $query;
-        }
-
-        if ($request->user()->hasRole('admin-history')) {
-            return $query->whereHas('roles', function ($query) {
-                $query->where('name', 'LIKE', '%history%');
-            });
-        }
-
-        if ($request->user()->hasRole('admin-aciff')) {
-            return $query->whereHas('roles', function ($query) {
-                $query->where('name', 'LIKE', '%aciff%');
-            });
-        }
-
-        return $query->where('id', $request->user()->id);
-    }
 
     /**
      * Get the fields displayed by the resource.
@@ -68,22 +52,19 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make('Email')
+            Text::make('Guard Name')
                 ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+                ->rules('required', 'max:255'),
 
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', Rules\Password::defaults())
-                ->updateRules('nullable', Rules\Password::defaults()),
-
-            Boolean::make("Admin", function ($model) {
-                return $model->hasAnyRole(['super-admin', 'admin-history', 'admin-aciff']);
-            })->exceptOnForms(),
+            DateTime::make('Created At')
+                ->sortable()
+                ->exceptOnForms(),
+            DateTime::make('Updated At')
+                ->sortable()
+                ->exceptOnForms(),
 
             BelongsToMany::make('Roles'),
+            BelongsToMany::make('Users'),
         ];
     }
 
