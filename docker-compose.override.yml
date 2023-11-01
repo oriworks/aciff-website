@@ -1,0 +1,17 @@
+services:
+    composer:
+        container_name: composer
+        build:
+            target: install
+            dockerfile: ./.docker/php/Dockerfile
+            context: .
+        tty: true
+        volumes:
+            - ./source/website:/var/www
+            - ~/.ssh:/root/.ssh
+        networks:
+            - local-network
+
+networks:
+    local-network:
+        driver: bridge

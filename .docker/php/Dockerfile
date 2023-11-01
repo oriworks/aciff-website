@@ -121,6 +121,9 @@ USER $user
 
 EXPOSE 8000
 
+FROM base as install
+CMD [ "composer", "install" ]
+
 FROM base as php-clean-installation
 
 ENTRYPOINT [ "php", "-S", "0.0.0.0:8000" ]
