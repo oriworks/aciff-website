@@ -6,6 +6,7 @@ use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -63,7 +64,21 @@ class User extends Resource
      */
     public function fields(NovaRequest $request)
     {
-        return [
+        $fieldsByRole = [];
+
+        if ($request->user()->hasRole('super-admin')) {
+            $fieldsByRole = [
+                Select::make('Role')
+                    ->options(function () {
+                        $roleModel = config('permission.models.role');
+                        return (new $roleModel)->all()->pluck('name', 'name');
+                    })
+                    ->rules('required')
+                    ->onlyOnForms(),
+            ];
+        }
+
+        return array_merge($fieldsByRole, [
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
@@ -84,7 +99,7 @@ class User extends Resource
             })->exceptOnForms(),
 
             BelongsToMany::make('Roles'),
-        ];
+        ]);
     }
 
     /**

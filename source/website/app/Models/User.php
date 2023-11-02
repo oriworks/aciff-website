@@ -46,4 +46,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    private static $_role = null;
+
+    /**
+     * The "booted" method of the model.
+     */
+    protected static function booted(): void
+    {
+        static::creating(function (User $user) {
+            if ($user->role !== null) {
+                self::$_role = $user->role;
+                unset($user->role);
+            }
+        });
+
+        static::created(function (User $user) {
+            $authUser = auth()->user();
+            if($authUser instanceof User) {
+                if ($authUser->hasRole('admin-aciff')) {
+                    $user->assignRole('aciff');
+                }
+                if ($authUser->hasRole('admin-history')) {
+                    $user->assignRole('history');
+                }
+            }
+            if (self::$_role !== null) {
+                $user->assignRole(self::$_role);
+                self::$_role = null;
+            }
+        });
+    }
 }
