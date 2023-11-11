@@ -49,9 +49,21 @@ class UserPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, User $model): void //: bool
+    public function update(User $user, User $model): bool
     {
-        //
+        if ($user->id === $model->id) {
+            return true;
+        }
+
+        if ($user->hasRole('admin-history') && ($model->hasRole('admin-history') || $model->hasRole('history'))) {
+            return true;
+        }
+
+        if ($user->hasRole('admin-aciff') && ($model->hasRole('admin-aciff') || $model->hasRole('aciff'))) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

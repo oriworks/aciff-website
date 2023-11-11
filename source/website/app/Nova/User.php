@@ -35,8 +35,10 @@ class User extends Resource
         'name', 'email',
     ];
 
-    public static function indexQuery(NovaRequest $request, $query)
+    public static function indexQuery(NovaRequest $request, $originalQuery)
     {
+        $query = parent::indexQuery($request, $originalQuery);
+
         if ($request->user()->hasRole('super-admin')) {
             return $query;
         }

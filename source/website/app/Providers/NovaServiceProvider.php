@@ -39,6 +39,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(\App\Nova\User::class),
                 ])->icon('collection')->collapsable(),
 
+                MenuSection::make('History', [
+                    MenuItem::resource(\App\Nova\Tag::class),
+                    MenuItem::resource(\App\Nova\Category::class),
+                    MenuItem::resource(\App\Nova\Document::class),
+                ])->icon('paper-clip')->collapsable(),
+
                 MenuSection::make('Security', [
                     MenuItem::resource(\App\Nova\Role::class),
                     MenuItem::resource(\App\Nova\Permission::class),

@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y --force-yes --no-install-recommends \
     nodejs \
     npm \
     openssh-server \
-    unzip
+    unzip \
+    ghostscript
 
 # Install soap extention
 RUN docker-php-ext-install soap
@@ -62,7 +63,8 @@ RUN docker-php-ext-install gmp
 #####################################
 
 RUN pecl install imagick && \
-    docker-php-ext-enable imagick
+    docker-php-ext-enable imagick && \
+    sed -i 's/domain="coder" rights="none" pattern="PDF"/domain="coder" rights="read|write" pattern="PDF"/g' /etc/ImageMagick-6/policy.xml
 
 #####################################
 # GD:
