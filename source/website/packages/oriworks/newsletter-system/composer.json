@@ -1,0 +1,49 @@
+{
+    "name": "oriworks/newsletter-system",
+    "description": ":package_description",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joel Oliveira",
+            "email": "joeloliveira@oriworks.com",
+            "homepage": "http://oriworks.com"
+        }
+    ],
+    "homepage": "https://github.com/oriworks/newsletter-system",
+    "keywords": ["Laravel", "NewsletterSystem"],
+    "require": {
+        "illuminate/support": "~9|~10",
+        "laravel/nova": "^4.0",
+        "jdavidbakr/mail-tracker": "^7.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oriworks\\NewsletterSystem\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Oriworks\\NewsletterSystem\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Oriworks\\NewsletterSystem\\NewsletterSystemServiceProvider"
+            ],
+            "aliases": {
+                "NewsletterSystem": "Oriworks\\NewsletterSystem\\Facades\\NewsletterSystem"
+            }
+        }
+    },
+    "repositories": {
+        "nova": {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    }
+}

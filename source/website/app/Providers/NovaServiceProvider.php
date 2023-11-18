@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Dashboards\Main;
 use Laravel\Nova\Menu\Menu;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
@@ -32,23 +31,24 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             return $menu;
         });
 
-        Nova::mainMenu(function (Request $request) {
+        Nova::mainMenu(function (Request $request, Menu $menu) {
+            // return $menu;
             return [
-                MenuSection::dashboard(Main::class)->icon('chart-bar'),
-                MenuSection::make('Resources', [
-                    MenuItem::resource(\App\Nova\User::class),
-                ])->icon('collection')->collapsable(),
+                    $menu->items[0],
 
-                MenuSection::make('History', [
-                    MenuItem::resource(\App\Nova\Tag::class),
-                    MenuItem::resource(\App\Nova\Category::class),
-                    MenuItem::resource(\App\Nova\Document::class),
-                ])->icon('paper-clip')->collapsable(),
+                    MenuSection::make('History', [
+                        MenuItem::resource(\App\Nova\Tag::class),
+                        MenuItem::resource(\App\Nova\Category::class),
+                        MenuItem::resource(\App\Nova\Document::class),
+                    ], 'paper-clip')->collapsable(),
 
-                MenuSection::make('Security', [
-                    MenuItem::resource(\App\Nova\Role::class),
-                    MenuItem::resource(\App\Nova\Permission::class),
-                ])->icon('lock-closed')->collapsable(),
+                    MenuSection::make('Security', [
+                        MenuItem::resource(\App\Nova\User::class),
+                        MenuItem::resource(\App\Nova\Role::class),
+                        MenuItem::resource(\App\Nova\Permission::class),
+                    ] ,'shield-check')->collapsable(),
+
+                    \Oriworks\NewsletterSystem\NewsletterSystem::mainMenuSection($request),
             ];
         });
     }
@@ -101,7 +101,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new \Oriworks\NewsletterSystem\NewsletterSystem,
+        ];
     }
 
     /**

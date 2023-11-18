@@ -22,6 +22,13 @@ class Document extends Resource
     public static $model = \App\Models\Document::class;
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'History';
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
