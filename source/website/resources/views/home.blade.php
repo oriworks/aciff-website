@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-    <div class="container mx-auto grid grid-cols-2 gap-6 p-3">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-3">
         @foreach($news as $item)
         <div class="flex items-strech gap-4 text-content">
             <div class="w-2/3 text-sm text-aciff flex flex-col gap-2">
