@@ -13,6 +13,15 @@ class Email extends Model
 {
     use HasFactory, HasUuids, Emailable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'email',
+    ];
+
     protected static function booted()
     {
         static::creating(function (Email $email) {

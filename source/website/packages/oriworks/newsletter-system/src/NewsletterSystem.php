@@ -35,7 +35,7 @@ class NewsletterSystem extends Tool
 
     public static function mainMenuSection(Request $request)
     {
-        return MenuSection::make('Newsletter',
+        return MenuSection::make('Newsletter System',
             collect(config('newsletter-system.resources'))->map(function ($resource) {
                 return MenuItem::resource($resource);
             })->all()

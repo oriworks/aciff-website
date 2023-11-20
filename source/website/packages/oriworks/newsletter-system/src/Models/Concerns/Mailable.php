@@ -9,7 +9,7 @@ trait Mailable
 {
     public static function bootMailable()
     {
-        static::deleting(function (Mailable $model) {
+        static::deleting(function ($model) {
             $model->mailQueues()->delete();
         });
     }

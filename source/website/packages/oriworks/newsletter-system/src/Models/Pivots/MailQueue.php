@@ -18,11 +18,11 @@ class MailQueue extends MorphPivot
 
     public function emailable(): MorphTo
     {
-        return $this->morphTo();
+        return $this->morphTo('emailable');
     }
 
     public function mailable(): MorphTo
     {
-        return $this->morphTo();
+        return $this->morphTo('mailable');
     }
 }

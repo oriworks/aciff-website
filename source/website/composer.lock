@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c1b903fb051e32554cc0af7f2de04b1",
+    "content-hash": "261abf99183c956c09fc97e7d166ec43",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -120,16 +120,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.286.2",
+            "version": "3.287.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "33a763586e840e5162ff8144a9532aa43172e11c"
+                "reference": "06978bfc63111fccd78b364238bf214b4ade8d18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/33a763586e840e5162ff8144a9532aa43172e11c",
-                "reference": "33a763586e840e5162ff8144a9532aa43172e11c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/06978bfc63111fccd78b364238bf214b4ade8d18",
+                "reference": "06978bfc63111fccd78b364238bf214b4ade8d18",
                 "shasum": ""
             },
             "require": {
@@ -209,9 +209,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.286.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.287.0"
             },
-            "time": "2023-11-15T19:19:39+00:00"
+            "time": "2023-11-17T20:03:36+00:00"
         },
         {
             "name": "brick/math",
@@ -325,6 +325,54 @@
                 }
             ],
             "time": "2023-09-23T21:17:11+00:00"
+        },
+        {
+            "name": "classic-o/nova-media-library",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/classic-o/nova-media-library.git",
+                "reference": "b1b0b9e6411138ea8689a6bbf20a8e88221ae7b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/classic-o/nova-media-library/zipball/b1b0b9e6411138ea8689a6bbf20a8e88221ae7b4",
+                "reference": "b1b0b9e6411138ea8689a6bbf20a8e88221ae7b4",
+                "shasum": ""
+            },
+            "require": {
+                "intervention/image": "^2.",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "ClassicO\\NovaMediaLibrary\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ClassicO\\NovaMediaLibrary\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Tool and field that will let you managing files and add them to the posts",
+            "keywords": [
+                "gallery",
+                "laravel",
+                "media",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/classic-o/nova-media-library/issues",
+                "source": "https://github.com/classic-o/nova-media-library/tree/1.0.8"
+            },
+            "time": "2021-10-23T17:47:17+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -2681,16 +2729,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.19.0",
+            "version": "3.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "1b2aa10f2326e0351399b8ce68e287d8e9209a83"
+                "reference": "a326d8a2d007e4ca327a57470846e34363789258"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1b2aa10f2326e0351399b8ce68e287d8e9209a83",
-                "reference": "1b2aa10f2326e0351399b8ce68e287d8e9209a83",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a326d8a2d007e4ca327a57470846e34363789258",
+                "reference": "a326d8a2d007e4ca327a57470846e34363789258",
                 "shasum": ""
             },
             "require": {
@@ -2755,7 +2803,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.19.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.21.0"
             },
             "funding": [
                 {
@@ -2767,20 +2815,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-07T09:04:28+00:00"
+            "time": "2023-11-18T13:59:15+00:00"
         },
         {
             "name": "league/flysystem-local",
-            "version": "3.19.0",
+            "version": "3.21.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-local.git",
-                "reference": "8d868217f9eeb4e9a7320db5ccad825e9a7a4076"
+                "reference": "470eb1c09eaabd49ebd908ae06f23983ba3ecfe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/8d868217f9eeb4e9a7320db5ccad825e9a7a4076",
-                "reference": "8d868217f9eeb4e9a7320db5ccad825e9a7a4076",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/470eb1c09eaabd49ebd908ae06f23983ba3ecfe7",
+                "reference": "470eb1c09eaabd49ebd908ae06f23983ba3ecfe7",
                 "shasum": ""
             },
             "require": {
@@ -2815,7 +2863,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem-local/issues",
-                "source": "https://github.com/thephpleague/flysystem-local/tree/3.19.0"
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.21.0"
             },
             "funding": [
                 {
@@ -2827,7 +2875,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-06T20:35:28+00:00"
+            "time": "2023-11-18T13:41:42+00:00"
         },
         {
             "name": "league/glide",
@@ -3797,6 +3845,43 @@
                 }
             ],
             "time": "2023-09-13T13:21:43+00:00"
+        },
+        {
+            "name": "oriworks/multiple-input",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "/var/www/packages/oriworks/multiple-input",
+                "reference": "ea7ccbe1d7fb384d1e60a7c4ddb024795f710920"
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Oriworks\\MultipleInput\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Oriworks\\MultipleInput\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": false
+            }
         },
         {
             "name": "oriworks/newsletter-system",
@@ -7899,6 +7984,60 @@
             "time": "2023-01-03T09:29:04+00:00"
         },
         {
+            "name": "urodoz/truncate-html",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/urodoz/truncateHTML.git",
+                "reference": "88fb29fd3a30c95b879f1642e08fd8746dd05bd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/urodoz/truncateHTML/zipball/88fb29fd3a30c95b879f1642e08fd8746dd05bd7",
+                "reference": "88fb29fd3a30c95b879f1642e08fd8746dd05bd7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4",
+                "symfony/dependency-injection": "~2.4",
+                "symfony/http-kernel": "~2.4",
+                "twig/twig": "~1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Urodoz\\Truncate\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Albert Lacarta",
+                    "email": "urodoz@gmail.com",
+                    "homepage": "http://www.rqlogic.com"
+                }
+            ],
+            "description": "Handle truncate action on HTML strings",
+            "keywords": [
+                "content",
+                "html",
+                "shorten",
+                "truncate",
+                "truncating"
+            ],
+            "support": {
+                "issues": "https://github.com/urodoz/truncateHTML/issues",
+                "source": "https://github.com/urodoz/truncateHTML/tree/master"
+            },
+            "time": "2014-05-25T22:50:06+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.6.0",
             "source": {
@@ -8856,16 +8995,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "10.1.7",
+            "version": "10.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "355324ca4980b8916c18b9db29f3ef484078f26e"
+                "reference": "84838eed9ded511f61dc3e8b5944a52d9017b297"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/355324ca4980b8916c18b9db29f3ef484078f26e",
-                "reference": "355324ca4980b8916c18b9db29f3ef484078f26e",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/84838eed9ded511f61dc3e8b5944a52d9017b297",
+                "reference": "84838eed9ded511f61dc3e8b5944a52d9017b297",
                 "shasum": ""
             },
             "require": {
@@ -8922,7 +9061,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.7"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.8"
             },
             "funding": [
                 {
@@ -8930,7 +9069,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-04T15:34:17+00:00"
+            "time": "2023-11-15T13:31:15+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -10623,7 +10762,10 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "oriworks/multiple-input": 20,
+        "oriworks/newsletter-system": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

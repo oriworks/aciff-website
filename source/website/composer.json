@@ -2,10 +2,14 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "classic-o/nova-media-library": "^1.0",
         "ebess/advanced-nova-media-library": "^4.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
@@ -14,12 +18,14 @@
         "laravel/tinker": "^2.8",
         "murdercode/nova4-tinymce-editor": "^1.2",
         "optimistdigital/nova-sortable": "^3.4",
+        "oriworks/multiple-input": "@dev",
         "oriworks/newsletter-system": "dev-main",
         "spatie/eloquent-sortable": "^4.0",
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-permission": "^6.0",
         "spatie/laravel-sluggable": "^3.5",
-        "spatie/pdf-to-image": "^2.2"
+        "spatie/pdf-to-image": "^2.2",
+        "urodoz/truncate-html": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -85,6 +91,13 @@
         "nova": {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        "oriworks/multiple-input": {
+            "type": "path",
+            "url": "/var/www/packages/oriworks/multiple-input",
+            "options": {
+                "symlink": true
+            }
         }
     }
 }

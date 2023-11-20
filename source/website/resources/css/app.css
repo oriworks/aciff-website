@@ -1,0 +1,52 @@
+.instagram,
+.hover\:instagram:hover {
+    fill: url(#instagram-gradient) #447799;
+}
+.text-content {
+    @apply text-justify;
+}
+.text-content ul,
+.text-content ol {
+    padding-left: 1rem;
+}
+.text-content ul li {
+    list-style: inside;
+}
+
+.text-content a {
+    text-decoration: underline;
+    display: block;
+}
+.text-content .no-underline {
+    text-decoration: none;
+}
+.text-content a:hover {
+    @apply text-aciff;
+}
+.text-content .hover\:text-white:hover {
+    @apply text-white;
+}
+
+.resume-information,
+.resume-information p {
+    @apply text-justify;
+    @apply line-clamp-3;
+}
+
+.content img {
+    margin: 0 0 10px 10px;
+}
+
+.content table th {
+    @apply bg-aciff text-white;
+}
+.content a {
+    cursor: default;
+}
+.content td[colspan]:not([colspan="1"]) {
+    @apply border-t border-b border-dashed border-aciff;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

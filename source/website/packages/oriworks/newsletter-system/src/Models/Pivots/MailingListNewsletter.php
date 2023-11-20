@@ -6,9 +6,16 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class MailingListNewsletter extends Pivot
 {
-    protected $dates = ['send_at'];
-
-    public $timestamps = true;
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'send_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     protected static function booted()
     {

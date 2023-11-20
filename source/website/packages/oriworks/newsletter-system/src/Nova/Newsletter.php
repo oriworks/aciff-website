@@ -3,6 +3,7 @@
 namespace Oriworks\NewsletterSystem\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
@@ -63,11 +64,11 @@ class Newsletter extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            BelongsToMany::make('Sender', 'sender', config('newsletter-system.resources.sender'))
+            BelongsTo::make('Sender', 'sender', config('newsletter-system.resources.sender'))
                 ->nullable(),
 
             MorphTo::make('Newsletterable', 'newsletterable')
-                ->types(collect(config('newsletter-system.newsletterable-types'))->keys()->all())
+                ->types(collect(config('newsletter-system.newsletterable-types'))->values()->all())
                 ->showCreateRelationButton(),
 
             BelongsToMany::make('Mailing Lists', 'mailingLists', config('newsletter-system.resources.mailing_list'))
