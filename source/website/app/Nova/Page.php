@@ -72,23 +72,6 @@ class Page extends Resource
                 ])
                 ->displayUsingLabels()
                 ->default('page'),
-                Text::make(__('Subject'), 'subject')
-                ->rules('required', 'max:254')
-                ->creationRules('unique:pages,subject')
-                ->updateRules('unique:pages,subject,{{resourceId}}'),
-
-            Select::make(__('Template'), 'view')
-                ->rules('required')
-                ->options([
-                    'home' => __('Home'),
-                    'page' => __('Page'),
-                    'membership-form' => __('Member Ship Form'),
-                    'contact-form' => __('Contact Form'),
-                    'information-list' => __('Information List'),
-                    'protocols-and-partnerships' => __('Protocols and Partnerships')
-                ])
-                ->displayUsingLabels()
-                ->default('page'),
 
             TinymceEditor::make(__('Content'), 'content')
                 ->rules('required')

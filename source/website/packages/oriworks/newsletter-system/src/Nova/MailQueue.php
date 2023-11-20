@@ -37,6 +37,8 @@ class MailQueue extends Resource
      */
     public static $search = [];
 
+    public static $globallySearchable = false;
+
     protected static $sort = false;
 
     /**

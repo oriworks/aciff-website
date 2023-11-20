@@ -49,9 +49,13 @@ class AppServiceProvider extends ServiceProvider
         view()->composer(['protocols-and-partnerships'], function ($view) {
             $view->with('protocols', \App\Models\Partnership::where('type', 'protocol')->get()->groupBy(function ($item) {
                 return $item->area->name;
+            })->sortBy(function ($item, $key) {
+                return $key;
             }));
             $view->with('partnerships', \App\Models\Partnership::where('type', 'partnership')->get()->groupBy(function ($item) {
                 return $item->area->name;
+            })->sortBy(function ($item, $key) {
+                return $key;
             }));
         });
     }

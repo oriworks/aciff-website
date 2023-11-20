@@ -127,8 +127,8 @@ class Suggestion extends Resource
     public function actions(NovaRequest $request)
     {
         return [
-            (new MarkAsSolved)->onlyInline(),
-            (new MarkAsUnsolved)->onlyInline(),
+            (new MarkAsSolved)->sole(),
+            (new MarkAsUnsolved)->sole(),
         ];
     }
 }

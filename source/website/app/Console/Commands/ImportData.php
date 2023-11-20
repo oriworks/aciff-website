@@ -42,16 +42,17 @@ class ImportData extends Command
         // DB::connection('aciff')->update("update galeria set new_id = null where 1");
         // DB::connection('aciff')->update("update section set new_id = null where 1");
         // DB::connection('aciff')->update("update news set new_id = null where 1");
-        DB::connection('aciff')->update("update deals set new_id = null where 1");
+        // DB::connection('aciff')->update("update deals set new_id = null where 1");
         // DB::connection('aciff')->update("update menu set new_id = null where 1");
+        // Gallery::query()->delete();
         // Page::query()->delete();
         // Information::query()->delete();
         // Banner::query()->delete();
         MenuItem::query()->delete();
-        PartnershipArea::query()->delete();
-        Partnership::query()->delete();
-        PartnershipAddress::query()->delete();
-        PartnershipContact::query()->delete();
+        // PartnershipArea::query()->delete();
+        // Partnership::query()->delete();
+        // PartnershipAddress::query()->delete();
+        // PartnershipContact::query()->delete();
 
         $this->importGalleries();
 

@@ -20,6 +20,7 @@ class MailingList extends Model
     protected $fillable = [
         'name',
         'description',
+        'secure'
     ];
 
     public function emails(): BelongsToMany

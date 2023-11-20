@@ -50,8 +50,8 @@ class PartnershipArea extends Resource
         return [
             Text::make(__('Name'), 'name')
                 ->rules('required', 'max:254')
-                ->creationRules('unique:partnerships_areas,name')
-                ->updateRules('unique:partnerships_areas,name,{{resourceId}}'),
+                ->creationRules('unique:partnership_areas,name')
+                ->updateRules('unique:partnership_areas,name,{{resourceId}}'),
 
             HasMany::make(__('Partnerships'), 'partnerships', Partnership::class),
         ];

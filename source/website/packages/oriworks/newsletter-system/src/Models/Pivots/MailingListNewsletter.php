@@ -21,7 +21,7 @@ class MailingListNewsletter extends Pivot
     {
         static::created(function (MailingListNewsletter $model) {
             $model->mailingList->emails->each(function ($email) use ($model) {
-                if ($email->verified_at && !$email->canceled_at && !$email->newsletters->find($model->newsletter_id)) {
+                if (($model->mailingList->secure || $email->verified_at) && !$email->canceled_at && !$email->newsletters->find($model->newsletter_id)) {
                     $model->newsletter
                     ->emails()
                     ->attach($email, ['priority' => 0, 'retry' => 0, 'mailable_type' => config('newsletter-system.models.newsletter')]);

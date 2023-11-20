@@ -20,6 +20,8 @@ class Email extends Model
      */
     protected $fillable = [
         'email',
+        'verified_at',
+        'canceled_at',
     ];
 
     protected static function booted()

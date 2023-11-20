@@ -123,6 +123,9 @@ class Email extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            (new Actions\Verify),
+            (new Actions\Cancel),
+        ];
     }
 }

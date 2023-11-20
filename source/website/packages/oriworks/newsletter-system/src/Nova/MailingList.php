@@ -3,6 +3,7 @@
 namespace Oriworks\NewsletterSystem\Nova;
 
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Oriworks\NewsletterSystem\Nova\Pivots\MailingListNewsletterFields;
@@ -69,6 +70,9 @@ class MailingList extends Resource
             Text::make('Description')
                 ->sortable()
                 ->rules('max:254'),
+
+            Boolean::make('Secure')
+                ->default(false),
 
             BelongsToMany::make('Emails', 'emails', config('newsletter-system.resources.email')),
 
