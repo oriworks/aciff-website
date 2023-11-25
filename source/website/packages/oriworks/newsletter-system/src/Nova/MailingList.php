@@ -122,6 +122,8 @@ class MailingList extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            \Oriworks\NewsletterSystem\Nova\Actions\ImportMailingList::make()
+        ];
     }
 }

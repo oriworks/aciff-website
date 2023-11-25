@@ -60,11 +60,9 @@
             </form>
         </div>
         <div class="w-2/4 xl:w-3/12 pr-3">
-            <h1>Para resolução de conflitos de consumo contacte:</h1>
-            <p>Centro de Arbitragem de Conflitos de Consumo da Região de
-                Coimbra<br>
-                Site: <a href="https://cacrc.pt/" target="blank" class="text-white hover:underline">cacrc.pt</a>
-            </p>
+            <a href="https://www.livroreclamacoes.pt/" target="_blank" class="hover:text-aciff">
+                <img src="{{ asset('img/livro-reclamacoes-170x70-w.png') }}" alt="Livro de Reclamações">
+            </a>
         </div>
         <div class="w-2/4 xl:w-3/12 pr-3">
             <h1>Copyright © {{ $entity->friendly_name }}</h1>

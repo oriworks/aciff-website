@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -75,6 +76,10 @@ class Email extends Resource
             Boolean::make('Canceled', function () {
                 return isset($this->canceled_at);
             }),
+
+            Number::make('Mailing Lists', function () {
+                return $this->mailingLists()->count();
+            })->exceptOnForms(),
 
             BelongsToMany::make('Mailing Lists', 'mailingLists', config('newsletter-system.resources.mailing_list')),
 

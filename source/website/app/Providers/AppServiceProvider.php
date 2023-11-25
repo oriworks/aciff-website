@@ -36,6 +36,12 @@ class AppServiceProvider extends ServiceProvider
             })
             ->get());
             $view->with('news', \App\Models\Information::where('publish_at', '<', Carbon::now())->orderByDesc('publish_at')->paginate(6));
+
+            $view->with('banners', \App\Models\Banner::where('publish_at', '<', Carbon::now())->where(function ($query) {
+                $query->where('publish_to', '>', Carbon::now())
+                    ->orWhereNull('publish_to');
+            })
+            ->inRandomOrder()->limit(3)->get());
         });
 
         view()->composer(['page', 'information'], function ($view) {

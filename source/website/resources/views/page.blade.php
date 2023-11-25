@@ -1,7 +1,7 @@
 <x-layout>
     @if (isset($page))
-    <div class="container mx-auto p-3 flex gap-4">
-        <div class="flex flex-col my-4 gap-4 text-content">
+    <div class="container mx-auto p-3 grid grid-cols-3 gap-6">
+        <div class="flex flex-col my-4 gap-4 text-content col-span-2">
             <div class="flex justify-between items-center">
                 <h1 class="text-2xl font-semibold text-aciff">{{ $page->subject }}</h1>
                 @auth
@@ -30,7 +30,7 @@
             </div>
             @endif
         </div>
-        <div class="w-1/3 flex-shrink-0 flex flex-col gap-4">
+        <div class="flex flex-col gap-4">
             <h1 class="text-aciff uppercase">Pub:</h1>
             <div class="flex flex-wrap">
                 @foreach ($banners as $banner)

@@ -18,7 +18,7 @@ class EntitySeeder extends Seeder
             'facebook' => 'ACIFF',
             'twitter' => 'ACIFF_FigFoz',
         ]);
-        $entity->addMedia('public/img/ACIFF_LOGO.png')
+        $entity->addMedia('public/img/logo.png')
             ->preservingOriginal()
             ->toMediaCollection('logo');
     }

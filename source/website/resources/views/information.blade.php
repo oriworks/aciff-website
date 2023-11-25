@@ -1,7 +1,6 @@
 <x-layout>
-
-    <div class="container mx-auto p-3 flex flex-wrap md:flex-nowrap gap-4">
-        <article class="flex flex-col gap-4 text-content pb-2 text-with-margin">
+    <div class="container mx-auto p-3 grid grid-cols-3 gap-6">
+        <article class="flex flex-col gap-4 text-content pb-2 text-with-margin col-span-2">
             <div class="flex justify-between items-center">
                 <h1 class="text-2xl font-semibold text-aciff">{{ $information->subject }}</h1>
                 <div class="flex gap-2 items-center">
@@ -23,7 +22,7 @@
                 </div>
             </div>
         </article>
-        <div class="w-full md:w-1/3 md:flex-shrink-0 flex flex-col gap-4">
+        <div class="flex flex-col gap-4">
             <h1 class="text-aciff uppercase">Pub:</h1>
             <div class="flex flex-wrap">
                 @foreach ($banners as $banner)

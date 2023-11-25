@@ -20,5 +20,15 @@ class MailingListSeeder extends Seeder
             'name' => 'Departamentos',
             'description' => 'Emails internos'
         ]);
+        MailingList::create([
+            'name' => 'Sócios',
+            'description' => 'Emails dos sócios retirados do PHC',
+            'secure' => true
+        ]);
+        MailingList::create([
+            'name' => 'Formação',
+            'description' => 'Emails dos formandos',
+            'secure' => true
+        ]);
     }
 }

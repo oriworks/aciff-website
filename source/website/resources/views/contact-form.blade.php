@@ -11,7 +11,7 @@
         {!! $page->content !!}
 
         <div class="w-9/12 mx-auto">
-            <div class="grid grid-flow-row grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-flow-row grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
                 @foreach ($departments as $department)
                     <div class="{{ $loop->index === 0 ? 'row-span-3' : '' }}">
                         <h1 class="font-semibold italic text-aciff">{{$department->name}}</h1>

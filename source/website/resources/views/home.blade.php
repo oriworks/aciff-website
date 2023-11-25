@@ -38,4 +38,11 @@
         </div>
         @endforeach
     </div>
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-3">
+        @foreach($banners as $banner)
+        <a href="{{$banner->link}}" class="w-full" alt="{{$banner->name}}">
+            <div class="aspect-w-16 aspect-h-9 bg-cover bg-no-repeat bg-center" style="background-image: url('{{ $banner->getFirstMediaUrl('banner') }}');"></div>
+        </a>
+        @endforeach
+    </div>
 </x-layout>
