@@ -74,7 +74,11 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -82,7 +86,11 @@ class DocumentPolicy
      */
     public function restore(User $user, Document $document): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -90,6 +98,10 @@ class DocumentPolicy
      */
     public function forceDelete(User $user, Document $document): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 }

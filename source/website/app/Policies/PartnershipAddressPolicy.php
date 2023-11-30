@@ -13,7 +13,11 @@ class PartnershipAddressPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -21,7 +25,11 @@ class PartnershipAddressPolicy
      */
     public function view(User $user, PartnershipAddress $partnershipAddress): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -29,7 +37,11 @@ class PartnershipAddressPolicy
      */
     public function create(User $user): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -37,7 +49,11 @@ class PartnershipAddressPolicy
      */
     public function update(User $user, PartnershipAddress $partnershipAddress): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -45,7 +61,11 @@ class PartnershipAddressPolicy
      */
     public function delete(User $user, PartnershipAddress $partnershipAddress): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -53,7 +73,11 @@ class PartnershipAddressPolicy
      */
     public function restore(User $user, PartnershipAddress $partnershipAddress): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -61,6 +85,10 @@ class PartnershipAddressPolicy
      */
     public function forceDelete(User $user, PartnershipAddress $partnershipAddress): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 }

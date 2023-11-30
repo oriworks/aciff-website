@@ -20,7 +20,11 @@ class RolePolicy
      */
     public function view(User $user, Role $role): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -28,7 +32,11 @@ class RolePolicy
      */
     public function create(User $user): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -36,7 +44,11 @@ class RolePolicy
      */
     public function update(User $user, Role $role): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -44,7 +56,11 @@ class RolePolicy
      */
     public function delete(User $user, Role $role): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -52,7 +68,11 @@ class RolePolicy
      */
     public function restore(User $user, Role $role): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -60,6 +80,10 @@ class RolePolicy
      */
     public function forceDelete(User $user, Role $role): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 }

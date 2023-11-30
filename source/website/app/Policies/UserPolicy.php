@@ -71,7 +71,11 @@ class UserPolicy
      */
     public function delete(User $user, User $model): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -79,7 +83,11 @@ class UserPolicy
      */
     public function restore(User $user, User $model): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -87,6 +95,10 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): void //: bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 }

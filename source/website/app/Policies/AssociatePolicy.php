@@ -13,7 +13,11 @@ class AssociatePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -21,7 +25,11 @@ class AssociatePolicy
      */
     public function view(User $user, Associate $associate): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -29,7 +37,11 @@ class AssociatePolicy
      */
     public function create(User $user): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -37,7 +49,11 @@ class AssociatePolicy
      */
     public function update(User $user, Associate $associate): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -45,7 +61,11 @@ class AssociatePolicy
      */
     public function delete(User $user, Associate $associate): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -53,7 +73,11 @@ class AssociatePolicy
      */
     public function restore(User $user, Associate $associate): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -61,6 +85,10 @@ class AssociatePolicy
      */
     public function forceDelete(User $user, Associate $associate): bool
     {
-        //
+        if ($user->hasRole('admin-aciff')) {
+            return true;
+        }
+
+        return false;
     }
 }
