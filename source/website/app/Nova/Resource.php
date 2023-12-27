@@ -13,7 +13,7 @@ abstract class Resource extends NovaResource
      * @var array
      */
     public static $defaultOrder = [
-        'created_at' => 'asc'
+        'created_at' => 'desc'
     ];
 
     /**
