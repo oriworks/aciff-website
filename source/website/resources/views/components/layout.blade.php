@@ -8,11 +8,11 @@
 
     <title>{{ config('app.name') }}</title>
 
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="flex h-screen overflow-hidden bg-gray-100">
+<body class="flex h-screen overflow-hidden bg-gray-100" id="app">
     <x-side-menu :menu="$menu" />
     <div class="flex flex-col flex-grow flex-shrink overflow-auto">
         <x-menu :menu="$menu" :entity="$entity" />
@@ -45,9 +45,9 @@
         <x-footer :entity="$entity" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script>
+        {{-- <script>
             {!! Vite::content('resources/js/app.js') !!}
-        </script>
+        </script> --}}
         <script>
             $('.share_popup').click(function (event) {
                 event.preventDefault();

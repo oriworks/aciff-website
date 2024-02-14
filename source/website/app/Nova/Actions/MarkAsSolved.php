@@ -27,7 +27,7 @@ class MarkAsSolved extends Action
         foreach ($models as $model) {
             $model->update([
                 'solved_at' => Carbon::now(),
-                'solved_by' => auth()->user()->id
+                'solved_by' => auth()->user()->email
             ]);
         }
 

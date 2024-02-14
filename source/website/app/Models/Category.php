@@ -57,6 +57,10 @@ class Category extends Model implements Sortable
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function childrenRecursive() {
+        return $this->child()->with('childrenRecursive');
+    }
+
     /**
      * Get the documents for the category.
      */

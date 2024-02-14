@@ -6,6 +6,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -76,6 +77,24 @@ class Document extends Resource
             BelongsTo::make('Last Editor', 'lastEditor', User::class)->exceptOnForms(),
             DateTime::make('Updated at')->onlyOnDetail(),
 
+
+            DateTime::make(__('Publish At'), 'publish_at')->hideFromIndex(),
+            DateTime::make(__('Download'), 'downloadable_at')->hideFromIndex(),
+            DateTime::make(__('Request'), 'requestable_at')->hideFromIndex(),
+
+            Boolean::make('Converted', 'converted')->exceptOnForms(),
+            Boolean::make(__('Published'), function ($model) {
+                return $model->published && $model->converted;
+            })->onlyOnIndex(),
+
+            Boolean::make(__('Downloadable'), function ($model) {
+                return $model->downloadable && $model->converted;
+            })->onlyOnIndex(),
+
+            Boolean::make(__('Requestable'), function ($model) {
+                return $model->requestable;
+            })->onlyOnIndex(),
+
             BelongsToMany::make('Tags', 'tags', Tag::class)
                 ->showCreateRelationButton()
                 ->hideFromIndex(),
@@ -123,6 +142,13 @@ class Document extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            (new Actions\Publish)->sole(),
+            (new Actions\Unpublish)->sole(),
+            (new Actions\Downloadable)->sole(),
+            (new Actions\RemoveDownloadable)->sole(),
+            (new Actions\Requestable)->sole(),
+            (new Actions\RemoveRequestable)->sole(),
+        ];
     }
 }

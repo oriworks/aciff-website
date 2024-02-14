@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 use Oriworks\NewsletterSystem\Models\Concerns\SystemMailable;
 
 class Associate extends Model
 {
-    use HasFactory, HasUuids, SystemMailable;
+    use HasFactory, HasUuids, SystemMailable, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -77,8 +78,8 @@ class Associate extends Model
         });
     }
 
-    public function solvedBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'solved_by');
-    }
+    // public function solvedBy(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class, 'solved_by');
+    // }
 }

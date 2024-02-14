@@ -68,7 +68,8 @@ class Page extends Resource
                     'membership-form' => __('Member Ship Form'),
                     'contact-form' => __('Contact Form'),
                     'information-list' => __('Information List'),
-                    'protocols-and-partnerships' => __('Protocols and Partnerships')
+                    'protocols-and-partnerships' => __('Protocols and Partnerships'),
+                    'history' => __('History'),
                 ])
                 ->displayUsingLabels()
                 ->default('page'),

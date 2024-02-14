@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    purge: [
+    content: [
         "./storage/framework/views/*.php",
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
-    darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
             spacing: {
@@ -43,7 +42,6 @@ export default {
     plugins: [
         require("@tailwindcss/forms"),
         require("@tailwindcss/aspect-ratio"),
-        require("@tailwindcss/line-clamp"),
         function ({ addComponents }) {
             addComponents({
                 ".container": {

@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Notifications\Notifiable;
 use Oriworks\NewsletterSystem\Models\Concerns\SystemMailable;
 
 class Suggestion extends Model
 {
-    use HasFactory, HasUuids, SystemMailable;
+    use HasFactory, HasUuids, SystemMailable, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -67,8 +68,8 @@ class Suggestion extends Model
         return $this->belongsTo(Department::class);
     }
 
-    public function solvedBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'solved_by');
-    }
+    // public function solvedBy(): BelongsTo
+    // {
+    //     return $this->belongsTo(User::class, 'solved_by');
+    // }
 }

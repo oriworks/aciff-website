@@ -37,6 +37,4 @@ Por favor caso este assunto seja resolvido por si. Clique no botão abaixo.
 Resolvido
 </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
 </x-mail::message>

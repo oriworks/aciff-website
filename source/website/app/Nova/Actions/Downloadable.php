@@ -11,7 +11,7 @@ use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class MarkAsUnsolved extends Action
+class Downloadable extends Action
 {
     use InteractsWithQueue, Queueable;
 
@@ -26,12 +26,11 @@ class MarkAsUnsolved extends Action
     {
         foreach ($models as $model) {
             $model->update([
-                'solved_at' => null,
-                'solved_by' => null
+                'downloadable_at' => Carbon::now(),
             ]);
         }
 
-        return Action::message(__('Suggestion marked as unsolved.'));
+        return Action::message(__('Document marked as downloadable.'));
     }
 
     /**

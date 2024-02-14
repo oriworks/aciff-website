@@ -2,7 +2,6 @@
 
 namespace App\Nova\Actions;
 
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -11,7 +10,7 @@ use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class MarkAsUnsolved extends Action
+class RemoveRequestable extends Action
 {
     use InteractsWithQueue, Queueable;
 
@@ -26,12 +25,11 @@ class MarkAsUnsolved extends Action
     {
         foreach ($models as $model) {
             $model->update([
-                'solved_at' => null,
-                'solved_by' => null
+                'requestable_at' => null,
             ]);
         }
 
-        return Action::message(__('Suggestion marked as unsolved.'));
+        return Action::message(__('Document marked as non requestable.'));
     }
 
     /**

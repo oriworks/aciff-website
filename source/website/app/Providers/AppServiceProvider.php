@@ -18,9 +18,16 @@ class AppServiceProvider extends ServiceProvider
             'page',
             'information',
             'components.layout',
+            'history',
             'mail::message'
         ], function ($view) {
             $view->with('entity', \App\Models\Entity::firstOrFail());
+        });
+        view()->composer([
+            'history',
+            'history-category',
+        ], function ($view) {
+            $view->with('categories', \App\Models\Category::where('parent_id', null)->orderBy('sort_order')->get());
         });
         view()->composer([
             'components.layout'

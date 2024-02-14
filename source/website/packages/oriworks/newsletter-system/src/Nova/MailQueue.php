@@ -75,12 +75,12 @@ class MailQueue extends Resource
                 ->types(collect(config('newsletter-system.emailable-types'))->values()->all())
                 ->nullable(),
 
-            Boolean::make('Verified', function () {
-                return $this->emailable_type !== config('newsletter-system.models.email') || isset($this->emailable->verified_at);
-            }),
-            Boolean::make('Canceled', function () {
-                return isset($this->emailable->canceled_at);
-            }),
+            // Boolean::make('Verified', function () {
+            //     return $this->emailable_type !== config('newsletter-system.models.email') || isset($this->emailable->verified_at);
+            // }),
+            // Boolean::make('Canceled', function () {
+            //     return isset($this->emailable->canceled_at);
+            // }),
 
             MorphTo::make('Mail', 'mailable')
                 ->types(collect(config('newsletter-system.mailable-types'))->values()->all())

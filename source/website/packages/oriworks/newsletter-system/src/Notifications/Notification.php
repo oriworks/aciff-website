@@ -34,7 +34,7 @@ abstract class Notification extends IlluminateNotification implements HasMailMes
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail(object $notifiable)
     {
         return $this->mailMessage($notifiable)->withSymfonyMessage(function (Email $message) {
             $message->getHeaders()->addTextHeader('X-Emailable-Type', $this->mailQueue->emailable_type);

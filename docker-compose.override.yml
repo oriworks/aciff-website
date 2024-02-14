@@ -11,6 +11,21 @@ services:
             - ~/.ssh:/root/.ssh
         networks:
             - local-network
+    phpmyadmin:
+        container_name: aciff-phpmyadmin
+        image: phpmyadmin
+        restart: always
+        env_file:
+            - .env
+        networks:
+            - local
+            - proxy
+        labels:
+            - "traefik.enable=true"
+            - "traefik.http.routers.phpmyadmin.entrypoints=websecure"
+            - "traefik.http.routers.phpmyadmin.tls=true"
+            - "traefik.docker.network=traefik-proxy"
+            - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.aciff.local`)"
 
 networks:
     local-network:

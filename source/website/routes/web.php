@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WebsiteController::class, 'index'])->name('website.index');
 Route::get('/noticias', [WebsiteController::class, 'news'])->name('website.news');
 Route::get('/noticias/{information}', [WebsiteController::class, 'information'])->name('website.information');
+Route::get('/historia/{category}', [WebsiteController::class, 'category'])->name('website.category');
+Route::get('/historia/documentos/{document}', [WebsiteController::class, 'document'])->name('website.document');
+Route::get('/historia/documentos/{document}/download', [WebsiteController::class, 'download']);
 
 Route::group(['prefix' => 'suggestion'], function () {
     Route::post('/', [SuggestionController::class, 'store'])->name('suggestion.store');

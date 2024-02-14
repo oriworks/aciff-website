@@ -19,11 +19,36 @@ class Document extends Model implements HasMedia
 {
     use HasFactory, HasUuids, HasBy, HasSlug, InteractsWithMedia;
 
+    protected $fillable = [
+        'subject',
+        'content',
+        'publish_at',
+        'downloadable_at',
+        'requestable_at',
+        'category_id',
+        'created_by',
+        'updated_by',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'publish_at' => 'datetime',
+        'downloadable_at' => 'datetime',
+        'requestable_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('document')
             ->singleFile()
             ->registerMediaConversions(function (Media $media) {
+
                 if ($media->getTypeFromMime() === 'pdf') {
                     $pdf = new \Spatie\PdfToImage\Pdf($media->getPath());
                     foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
@@ -49,16 +74,6 @@ class Document extends Model implements HasMedia
             ->saveSlugsTo('slug');
     }
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(\App\Models\Category::class, 'category_id');
@@ -77,5 +92,39 @@ class Document extends Model implements HasMedia
     public function lastEditor(): BelongsTo
     {
         return $this->belongsTo(\App\Models\User::class, 'updated_by');
+    }
+
+    public function getPagesAttribute() {
+        $document = $this->getMedia('document')[0];
+        $path = $document->getAvailableFullUrl(['page-1']);
+
+        return array_map(function($conversion) use ($path) {
+            return str_replace('page-1', $conversion, $path);
+        }, array_keys($document->generated_conversions));
+    }
+
+    public function getMediaPagesAttribute() {
+        $document = $this->getMedia('document')[0];
+        $path = $document->getAvailablePath(['page-1']);
+
+        return array_map(function($conversion) use ($path) {
+            return str_replace('page-1', $conversion, $path);
+        }, array_keys($document->generated_conversions));
+    }
+
+    public function getConvertedAttribute() {
+        return count($this->getMedia('document')[0]->generated_conversions) > 0;
+    }
+
+    public function getPublishedAttribute() {
+        return $this->publish_at && $this->publish_at->isPast();
+    }
+
+    public function getDownloadableAttribute() {
+        return $this->downloadable_at && $this->downloadable_at->isPast();
+    }
+
+    public function getRequestableAttribute() {
+        return $this->requestable_at && $this->requestable_at->isPast();
     }
 }

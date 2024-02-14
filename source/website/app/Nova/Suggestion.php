@@ -77,7 +77,7 @@ class Suggestion extends Resource
             DateTime::make(__('Solved at'), 'solved_at')
                 ->exceptOnForms(),
 
-            BelongsTo::make(__('Solved by'), 'solvedBy', User::class)->exceptOnForms(),
+            Text::make(__('Solved by'), 'solved_by')->exceptOnForms(),
 
             HasMany::make(__('Mail Queues'), 'mailQueues', config('newsletter-system.resources.mail_queue')),
         ];
