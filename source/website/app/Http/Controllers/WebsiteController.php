@@ -20,7 +20,7 @@ class WebsiteController extends Controller
     public function show(Page $page)
     {
         if($page->view === 'contact-form') {
-            return view($page->view, ['page' => $page, 'departments' => Department::all()]);
+            return view($page->view, ['page' => $page, 'departments' => Department::whereNot('name', 'História')->get()]);
         }
         return view($page->view, ['page' => $page]);
     }

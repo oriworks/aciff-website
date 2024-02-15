@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AssociateController;
+use App\Http\Controllers\RequestDocumentController;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,11 @@ Route::group(['prefix' => 'suggestion'], function () {
 Route::group(['prefix' => 'associate'], function () {
     Route::post('/', [AssociateController::class, 'store'])->name('associate.store');
     Route::get('/{id}/solved/{token}', [AssociateController::class, 'solved'])->name('associate.solved');
+});
+
+Route::group(['prefix' => 'requestDocument'], function () {
+    Route::post('/', [RequestDocumentController::class, 'store'])->name('requestDocument.store');
+    Route::get('/{id}/solved/{token}', [RequestDocumentController::class, 'solved'])->name('requestDocument.solved');
 });
 
 Route::get('/{page}', [WebsiteController::class, 'show'])

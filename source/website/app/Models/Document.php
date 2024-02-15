@@ -53,9 +53,9 @@ class Document extends Model implements HasMedia
                     $pdf = new \Spatie\PdfToImage\Pdf($media->getPath());
                     foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
                         $this->addMediaConversion('page-' . $pageNumber)
-                            ->watermark(public_path('/img/logo.png'))
-                            ->watermarkOpacity(30)
-                            ->watermarkWidth(50, Manipulations::UNIT_PERCENT)
+                            ->watermark(public_path('/img/logo_white.png'))
+                            ->watermarkOpacity(50)
+                            ->watermarkWidth(40, Manipulations::UNIT_PERCENT)
                             ->watermarkPosition(Manipulations::POSITION_CENTER)
                             ->pdfPageNumber($pageNumber)
                             ->queued();
@@ -95,7 +95,11 @@ class Document extends Model implements HasMedia
     }
 
     public function getPagesAttribute() {
-        $document = $this->getMedia('document')[0];
+        $media = $this->getMedia('document');
+        if (count($media) === 0) {
+            return [];
+        }
+        $document = $media[0];
         $path = $document->getAvailableFullUrl(['page-1']);
 
         return array_map(function($conversion) use ($path) {
@@ -104,7 +108,11 @@ class Document extends Model implements HasMedia
     }
 
     public function getMediaPagesAttribute() {
-        $document = $this->getMedia('document')[0];
+        $media = $this->getMedia('document');
+        if (count($media) === 0) {
+            return [];
+        }
+        $document = $media[0];
         $path = $document->getAvailablePath(['page-1']);
 
         return array_map(function($conversion) use ($path) {
@@ -113,7 +121,11 @@ class Document extends Model implements HasMedia
     }
 
     public function getConvertedAttribute() {
-        return count($this->getMedia('document')[0]->generated_conversions) > 0;
+        $media = $this->getMedia('document');
+        if (count($media) === 0) {
+            return false;
+        }
+        return count($media[0]->generated_conversions) > 0;
     }
 
     public function getPublishedAttribute() {

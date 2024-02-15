@@ -15,4 +15,9 @@ class SystemMail extends NewsletterSystemMail
     {
         return $this->emailable(Associate::class);
     }
+
+    public function requestDocuments()
+    {
+        return $this->emailable(RequestDocument::class);
+    }
 }

@@ -91,6 +91,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::resource(\App\Nova\Tag::class),
                         MenuItem::resource(\App\Nova\Category::class),
                         MenuItem::resource(\App\Nova\Document::class),
+                        MenuItem::resource(\App\Nova\RequestDocument::class),
                     ], 'paper-clip')->collapsable(),
 
                     MenuSection::make('Security', [

@@ -25,6 +25,7 @@ return [
         'WelcomeNewWebsite' => \App\Notifications\WelcomeNewWebsite::class,
         'Suggestion' => \App\Notifications\Suggestion::class,
         'Associate' => \App\Notifications\Associate::class,
+        'RequestDocument' => \App\Notifications\RequestDocument::class,
     ],
     "system-mailable-types" => [],
     "mailable-types" => [
@@ -35,6 +36,7 @@ return [
         "email" => \Oriworks\NewsletterSystem\Nova\Email::class,
         "suggestion" => \App\Nova\Suggestion::class,
         "associate" => \App\Nova\Associate::class,
+        "request_document" => \App\Nova\RequestDocument::class,
     ],
     "newsletterable-types" => [
         \App\Notifications\NewsletterNotice::class => \App\Nova\Notice::class,
