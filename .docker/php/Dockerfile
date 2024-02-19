@@ -1,4 +1,4 @@
-FROM php:8.1.6-fpm as base
+FROM php:8.2.16-fpm as base
 
 ARG user=app
 

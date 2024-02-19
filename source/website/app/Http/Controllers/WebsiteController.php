@@ -8,7 +8,7 @@ use App\Models\Document;
 use App\Models\Page;
 use App\Models\Information;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class WebsiteController extends Controller
 {
@@ -48,13 +48,17 @@ class WebsiteController extends Controller
 
     public function document(Document $document)
     {
-        return $document->pages;
+        return array_map(function ($page) {
+            return asset(Storage::url($page));
+        }, $document->pages);
     }
 
     public function download(Document $document)
     {
         if ($document->downloadable) {
-            $data = ['pages' => $document->mediaPages];
+            $data = ['pages' => array_map(function ($page) {
+                return 'storage/' . $page;
+            }, $document->pages)];
             $pdf = PDF::loadView('document', $data);
 
             return $pdf->download($document->slug . '.pdf');

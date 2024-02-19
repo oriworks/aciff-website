@@ -16,7 +16,7 @@ trait HasBy {
         });
 
         static::updating(function ($model) {
-            if (!$model->isDirty('updated_by')) {
+            if (!app()->runningInConsole() && !$model->isDirty('updated_by')) {
                 $model->updated_by = auth()->user()->id;
             }
         });

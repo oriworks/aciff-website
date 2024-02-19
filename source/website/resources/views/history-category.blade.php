@@ -14,7 +14,7 @@
                     <div class="flex flex-col gap-4">
                         @foreach ($documents as $document)
                             <div class="grid grid-cols-4 gap-4">
-                                <img class="w-full" src="{{ $document->getMedia('document')[0]->getAvailableFullUrl(['page-1']) }}">
+                                <img class="w-full" src="{{ Storage::url($document->pages[1]) }}">
                                 <div class="col-span-3 flex flex-col gap-4">
                                     <h2 class="text-xl font-semibold text-aciff">{{ $document->subject }}</h2>
                                     <p>{!! $document->content !!}</p>

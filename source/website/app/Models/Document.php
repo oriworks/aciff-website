@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasBy;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,14 @@ class Document extends Model implements HasMedia
         'category_id',
         'created_by',
         'updated_by',
+        'attachment',
+        'attachment_name',
+        'attachment_num_pages',
+        'attachment_original_size',
+        'attachment_compress_size',
+        'attachment_num_image',
+        'attachment_pages',
+        'queue_id',
     ];
 
     /**
@@ -41,28 +50,8 @@ class Document extends Model implements HasMedia
         'requestable_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'attachment_pages' => 'array',
     ];
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('document')
-            ->singleFile()
-            ->registerMediaConversions(function (Media $media) {
-
-                if ($media->getTypeFromMime() === 'pdf') {
-                    $pdf = new \Spatie\PdfToImage\Pdf($media->getPath());
-                    foreach (range(1, $pdf->getNumberOfPages()) as $pageNumber) {
-                        $this->addMediaConversion('page-' . $pageNumber)
-                            ->watermark(public_path('/img/logo_white.png'))
-                            ->watermarkOpacity(50)
-                            ->watermarkWidth(40, Manipulations::UNIT_PERCENT)
-                            ->watermarkPosition(Manipulations::POSITION_CENTER)
-                            ->pdfPageNumber($pageNumber)
-                            ->queued();
-                    }
-                }
-            });
-    }
 
     /**
      * Get the options for generating the slug.
@@ -95,37 +84,11 @@ class Document extends Model implements HasMedia
     }
 
     public function getPagesAttribute() {
-        $media = $this->getMedia('document');
-        if (count($media) === 0) {
-            return [];
-        }
-        $document = $media[0];
-        $path = $document->getAvailableFullUrl(['page-1']);
-
-        return array_map(function($conversion) use ($path) {
-            return str_replace('page-1', $conversion, $path);
-        }, array_keys($document->generated_conversions));
-    }
-
-    public function getMediaPagesAttribute() {
-        $media = $this->getMedia('document');
-        if (count($media) === 0) {
-            return [];
-        }
-        $document = $media[0];
-        $path = $document->getAvailablePath(['page-1']);
-
-        return array_map(function($conversion) use ($path) {
-            return str_replace('page-1', $conversion, $path);
-        }, array_keys($document->generated_conversions));
+        return array_values($this->attachment_pages);
     }
 
     public function getConvertedAttribute() {
-        $media = $this->getMedia('document');
-        if (count($media) === 0) {
-            return false;
-        }
-        return count($media[0]->generated_conversions) > 0;
+        return $this->attachment_num_pages === $this->attachment_num_image;
     }
 
     public function getPublishedAttribute() {

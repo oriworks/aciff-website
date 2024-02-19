@@ -2,14 +2,18 @@
 
 namespace App\Nova;
 
+use App\Models\Document as ModelsDocument;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Mostafaznv\PdfOptimizer\Enums\PdfSettings;
+use Mostafaznv\PdfOptimizer\Laravel\Facade\PdfOptimizer;
 use Murdercode\TinymceEditor\TinymceEditor;
 
 
@@ -67,10 +71,38 @@ class Document extends Resource
             BelongsTo::make('Category', 'category', Category::class)
                 ->nullable(),
 
-            Files::make('Document', 'document')
-                ->conversionOnIndexView('page-1')
-                ->setAllowedFileTypes(['application/pdf'])
-                ->rules('required'),
+
+            Text::make('Pages', function () {
+                    return $this->attachment_num_pages;
+                })
+                ->showOnIndex(),
+
+            File::make('Attachment', 'attachment')
+                ->storeOriginalName('attachment_name')
+                ->storeSize('attachment_original_size')
+                ->store(function (NovaRequest $request, \App\Models\Document $model) {
+                    $originalFile = $request->attachment->store('/documents/original', 'private');
+                    $compressFile = str_replace('documents/original/', 'documents/', $originalFile);
+
+                    $result = PdfOptimizer::fromDisk('private')
+                        ->open($originalFile)
+                        ->toDisk('private')
+                        ->settings(PdfSettings::SCREEN)
+                        ->optimize($compressFile);
+
+                    $compressQueueId = $result->queueId;
+
+                    return [
+                        'queue_id' => $compressQueueId,
+                        'attachment' => $originalFile,
+                        'attachment_name' => $request->attachment->getClientOriginalName(),
+                        'attachment_original_size' => $request->attachment->getSize(),
+                        'attachment_num_pages' => preg_match_all("/\/Page\W/", file_get_contents($request->attachment), $matches),
+                        'attachment_pages' => [],
+                    ];
+                })
+                ->acceptedTypes('.pdf'),
+
 
             BelongsTo::make('Creator', 'creator', User::class)->exceptOnForms(),
             DateTime::make('Created at')->onlyOnDetail(),
@@ -83,6 +115,10 @@ class Document extends Resource
             DateTime::make(__('Request'), 'requestable_at')->hideFromIndex(),
 
             Boolean::make('Converted', 'converted')->exceptOnForms(),
+            Text::make('Percentage', function (ModelsDocument $model) {
+                return number_format($model->attachment_num_image / $model->attachment_num_pages * 100, 0) . '%';
+
+            })->exceptOnForms(),
             Boolean::make(__('Published'), function ($model) {
                 return $model->published && $model->converted;
             })->onlyOnIndex(),
