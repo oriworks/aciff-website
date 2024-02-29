@@ -8,11 +8,11 @@
 
     <title>{{ config('app.name') }}</title>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/standalone.js',])
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="flex h-screen overflow-hidden bg-gray-100" id="app">
+<body class="flex h-screen overflow-hidden bg-gray-100">
     <x-side-menu :menu="$menu" />
     <div class="flex flex-col flex-grow flex-shrink overflow-auto">
         <x-menu :menu="$menu" :entity="$entity" />

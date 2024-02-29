@@ -1,5 +1,4 @@
 import './bootstrap';
-import './standalone';
 
 $('#toggle-side-menu').click(() => {
     $("#side-menu").toggleClass('w-96');

@@ -48,7 +48,7 @@
             class="block p-3 cursor-pointer whitespace-nowrap border-r-4 border-gray-600 hover:bg-gray-800 hover:border-blue-700">
             {{ Str::of('Back office')->upper() }}
         </a>
-        <form method="post" action="{{ route('nova.logout') }}" class="block p-3 cursor-pointer whitespace-nowrap border-r-4 border-gray-600 hover:bg-gray-800 hover:border-blue-700">
+        <form method="post" action="/nova/logout" class="block p-3 cursor-pointer whitespace-nowrap border-r-4 border-gray-600 hover:bg-gray-800 hover:border-blue-700">
             @csrf
             <input type="submit" name="submit" value="{{ Str::of('Log out')->upper() }}">
         </form>

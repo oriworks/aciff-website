@@ -48,7 +48,7 @@
         </div>
         <div class="w-2/4 xl:w-3/12 pr-3">
             <h1>Inscreva-se na nossa newsletter:</h1>
-            <form id="newsletter-signup" action="{{ route('newsletter.signup') }}" method="post"
+            <form id="newsletter-signup" action="/newsletter/signup" method="post"
                 class="flex flex-col gap-2 items-start">
                 @csrf
                 <label class="self-stretch">

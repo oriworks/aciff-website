@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container mx-auto p-3 grid grid-cols-3 gap-6">
+    <div class="container mx-auto p-3 grid grid-cols-3 gap-6" id="app">
         <x-history-menu :categories="$categories" />
         <div class="flex flex-col my-4 gap-4 col-span-2">
             <div class="flex items-center gap-2 text-content">
