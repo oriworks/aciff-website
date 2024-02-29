@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer([
             'components.layout'
         ], function ($view) {
-            $view->with('menu', \App\Models\MenuItem::where('parent_id', null)->orderBy('sort_order')->get());
+            $view->with('menu', \App\Models\MenuItem::where('parent_id', null)->whereNot('name', 'HistóriaNovo')->orderBy('sort_order')->get());
         });
         view()->composer([
             'home',
